@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <!-- <Bootstrap> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+
+
+    <!-- medium style editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+
+    <!-- custom CSS -->
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+
+  </head>
+  <body class = 'loader'>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light techfont">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="navbar-brand bigbrand" href="{% url post_list %}">My blog <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/sumit-mandal">Github</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="https://www.linkedin.com/in/sumit-mandal-753692130/">linkedin</a>
+          </li>
+        </ul>
+
+    <ul class ='nav navbar-nav navbar-right'>
+      {% if user.is_authenticated %}
+      <li>
+        <a href="{% url 'post_new' %}">New Post </a>
+      </li>
+      <li>
+        <a href="{% url 'post_draft_list' %}">Drafts </a>
+      </li>
+      <li>
+        <a href="{% url 'logout' %}">Logout </a>
+      </li>
+      <li>
+        <a>Welcome:{{user.username}}</a>
+      </li>
+      {% else %}
+      <li><a class 'nav navbar-right' href="{% url 'login' %}"> <span class ='glyphicon glyphicon-user'> </span> </a></li>
+
+
+
+
+        {% endif %}
+    </ul>
+  </div>
+  </nav>
+
+<!-- content block -->
+
+<div class ="content container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="blog_posts">
+        {% block content %}
+        {% endblock %}
+
+      </div>
+
+    </div>
+
+
+
+<!--  -->
+
+
+
+<!--  -->
+  </body>
+</html>

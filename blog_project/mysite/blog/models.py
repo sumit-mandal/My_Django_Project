@@ -26,7 +26,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class Comment(model.Model):
+class Comment(models.Model):
     post = models.ForeignKey('blog.Post',related_name='comments')
     author = models.CharField(max_length=200)
     text = models.TextField()
@@ -38,7 +38,7 @@ class Comment(model.Model):
         self.save()
 
     def get_absolute_url(self):
-        return reverse('psot_list')
+        return reverse('post_list')
 
     def __str__(self):
         return self.text
