@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 # Create your models here.
 
@@ -34,12 +35,12 @@ class Group(models.Model):
 
 
 
-class GroupMember(Models.Model):
-    group = models.ForeignKey(Group,related_name='membarships')
-    user = modeels.ForeignKey(User,related_name='user_groups')
+class GroupMember(models.Model):
+    group = models.ForeignKey(Group,related_name='memberships',on_delete=models.CASCADE)
+    user = models.ForeignKey(User,related_name='user_groups',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
 
     class Meta:
-        unique_together = ('group','user')
+        unique_together = ("group", "user")
